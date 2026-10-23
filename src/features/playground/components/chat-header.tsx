@@ -2,6 +2,7 @@
 
 import { Bot, Sparkles, Menu, Plus, LogIn } from "lucide-react";
 import { useAssistants } from "../hooks/use-assistants";
+import { getAssistantLogo } from "@/features/chat/utils/assistant-logo";
 import { useConversationStore } from "@/features/chat/stores/conversation-store";
 import { useChatStore } from "@/features/chat/stores/chat-store";
 import { useAuthStore } from "@/stores/auth-store";
@@ -42,8 +43,12 @@ export function ChatHeader() {
           <Menu size={20} />
         </button>
 
-        <div className="flex h-8 w-8 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-md shadow-emerald-600/30">
-          <Bot size={18} className="sm:size-5" />
+        <div className="flex h-8 w-8 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl overflow-hidden border border-slate-200 bg-white shadow-sm">
+          <img
+            src={getAssistantLogo(assistant?.code, assistant?.name)}
+            alt={assistant?.name ?? "Assistant"}
+            className="h-full w-full object-cover"
+          />
         </div>
         <div className="min-w-0">
           <div className="flex items-center gap-1.5 sm:gap-2">

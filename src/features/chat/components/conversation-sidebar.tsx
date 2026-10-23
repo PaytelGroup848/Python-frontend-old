@@ -31,6 +31,7 @@ import { socketClient } from "@/services/websocket/socket-client";
 import { useAuthStore } from "@/stores/auth-store";
 import { useAssistants } from "@/features/playground/hooks/use-assistants";
 import { Assistant } from "@/features/playground/types/assistant";
+import { getAssistantLogo } from "../utils/assistant-logo";
 import { useQuery } from "@tanstack/react-query";
 import { fetchUserUsage } from "@/features/billing/services/billing.service";
 import { UpgradePlanModal } from "@/features/billing/components/upgrade-plan-modal";
@@ -261,8 +262,12 @@ export function ConversationSidebar() {
                 className="flex w-full items-center justify-between rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-left transition hover:border-emerald-500 hover:bg-emerald-50/50 shadow-sm"
               >
                 <div className="flex items-center gap-2.5 overflow-hidden">
-                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-emerald-600 text-white shadow-sm shadow-emerald-600/30">
-                    <Bot size={16} />
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg overflow-hidden border border-slate-200 bg-white shadow-xs">
+                    <img
+                      src={getAssistantLogo(activeAssistant?.code, activeAssistant?.name)}
+                      alt={activeAssistant?.name || "Assistant"}
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                   <div className="truncate">
                     <div className="text-sm font-bold text-slate-900 truncate">
@@ -278,10 +283,14 @@ export function ConversationSidebar() {
             ) : (
               <button
                 onClick={() => setIsAssistantDropdownOpen(!isAssistantDropdownOpen)}
-                className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-md shadow-emerald-600/30 mx-auto transition hover:scale-105"
+                className="flex h-10 w-10 items-center justify-center rounded-xl overflow-hidden border border-slate-200 bg-white shadow-md mx-auto transition hover:scale-105 p-1"
                 title={activeAssistant?.name || "General Chat"}
               >
-                <Bot size={20} />
+                <img
+                  src={getAssistantLogo(activeAssistant?.code, activeAssistant?.name)}
+                  alt={activeAssistant?.name || "Assistant"}
+                  className="h-full w-full object-cover rounded-lg"
+                />
               </button>
             )}
 
@@ -319,8 +328,12 @@ export function ConversationSidebar() {
                             : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                         }`}
                       >
-                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-emerald-600/10 text-emerald-700 font-bold">
-                          <Bot size={15} />
+                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg overflow-hidden border border-slate-200 bg-white">
+                          <img
+                            src={getAssistantLogo(assistant.code, assistant.name)}
+                            alt={assistant.name}
+                            className="h-full w-full object-cover"
+                          />
                         </div>
                         <div className="truncate">
                           <div className="font-bold text-slate-900 truncate">{assistant.name}</div>
