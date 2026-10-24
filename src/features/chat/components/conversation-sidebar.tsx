@@ -453,7 +453,7 @@ export function ConversationSidebar() {
             {/* UPGRADE PLAN BUTTON */}
             <button
               onClick={() => {
-                setIsUpgradeOpen(true);
+                router.push("/pricing");
                 setMobileSidebarOpen(false);
               }}
               className="flex w-full items-center justify-between rounded-xl bg-white border border-slate-200 p-2.5 transition hover:border-emerald-500 hover:bg-emerald-50/30 shadow-xs cursor-pointer group"
@@ -510,7 +510,7 @@ export function ConversationSidebar() {
           <>
             <button
               onClick={() => {
-                setIsUpgradeOpen(true);
+                router.push("/pricing");
                 setMobileSidebarOpen(false);
               }}
               className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-emerald-600 shadow-xs hover:border-emerald-400 hover:bg-emerald-50 mx-auto transition cursor-pointer"
