@@ -48,16 +48,32 @@ export default function RootLayout({
         antialiased
       `}
     >
-      <body className="h-full">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var b = localStorage.getItem('patwatoli_brightness');
+                if (b === 'dim') {
+                  document.documentElement.style.filter = 'brightness(0.92)';
+                } else if (b === 'soft') {
+                  document.documentElement.style.filter = 'brightness(0.85)';
+                }
+              } catch(e) {}
+            `,
+          }}
+        />
+      </head>
+      <body className="h-full bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-200">
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
+          defaultTheme="system"
+          enableSystem={true}
           disableTransitionOnChange
         >
           <QueryProvider>
             <NavbarWrapper />
-            <main className="h-full">{children}</main>
+            <main className="h-full bg-white dark:bg-slate-950">{children}</main>
           </QueryProvider>
         </ThemeProvider>
       </body>

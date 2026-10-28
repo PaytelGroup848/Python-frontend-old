@@ -96,20 +96,20 @@ export const SourcesDropdown = forwardRef<SourcesDropdownHandle, SourcesDropdown
     }
 
     return (
-      <div className="my-2.5 w-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-2xs transition-all">
+      <div className="my-2.5 w-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xs transition-all">
         {/* HEADER / TOGGLE BAR */}
         {!hideHeader && (
           <button
             type="button"
             onClick={() => setUncontrolledIsOpen((prev) => !prev)}
-            className="flex w-full items-center justify-between px-3.5 py-2.5 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer"
+            className="flex w-full items-center justify-between px-3.5 py-2.5 text-left text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors cursor-pointer"
             aria-expanded={isOpen}
           >
             <div className="flex items-center gap-2 overflow-hidden">
               <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-emerald-50 border border-emerald-200 text-emerald-600">
                 <Globe size={13} />
               </div>
-              <span className="font-semibold text-slate-800">
+              <span className="font-semibold text-slate-800 dark:text-white">
                 Sources
               </span>
               {sources.length > 0 && (
@@ -129,7 +129,7 @@ export const SourcesDropdown = forwardRef<SourcesDropdownHandle, SourcesDropdown
                 {sources.slice(0, 3).map((s) => (
                   <span
                     key={s.index}
-                    className="truncate max-w-[120px] rounded-sm bg-slate-100 border border-slate-200/70 px-1.5 py-0.5 text-[10px] text-slate-600 font-mono"
+                    className="truncate max-w-[120px] rounded-sm bg-slate-100 dark:bg-slate-800 border border-slate-200/70 dark:border-slate-700 px-1.5 py-0.5 text-[10px] text-slate-600 dark:text-slate-300 font-mono"
                   >
                     {s.domain || `Source ${s.index}`}
                   </span>
@@ -155,7 +155,7 @@ export const SourcesDropdown = forwardRef<SourcesDropdownHandle, SourcesDropdown
 
         {/* EXPANDED DROPDOWN CONTENT */}
         {isOpen && (
-          <div className="border-t border-slate-100 bg-slate-50/60 p-2.5 transition-all">
+          <div className="border-t border-slate-100 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-950/40 p-2.5 transition-all">
             {/* WEB SOURCES GRID */}
             {sources.length > 0 && (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -182,11 +182,11 @@ export const SourcesDropdown = forwardRef<SourcesDropdownHandle, SourcesDropdown
                       className={`group relative flex items-start gap-2.5 rounded-lg border p-2.5 text-left transition-all ${
                         isActive
                           ? "border-emerald-500 bg-emerald-50/90 ring-2 ring-emerald-400/40 text-slate-900 shadow-xs"
-                          : "border-slate-200/90 bg-white hover:border-emerald-300 hover:shadow-xs text-slate-800"
+                          : "border-slate-200/90 dark:border-slate-700/80 bg-white dark:bg-slate-800/80 hover:border-emerald-300 dark:hover:border-emerald-700 hover:shadow-xs text-slate-800 dark:text-slate-200"
                       } ${hasUrl ? "cursor-pointer" : "cursor-default"}`}
                     >
                       {/* SOURCE INDEX BADGE */}
-                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-slate-100 border border-slate-200/60 text-[11px] font-bold text-slate-700 group-hover:bg-emerald-600 group-hover:text-white group-hover:border-emerald-600 transition-colors">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-slate-100 dark:bg-slate-700 border border-slate-200/60 dark:border-slate-600 text-[11px] font-bold text-slate-700 dark:text-slate-300 group-hover:bg-emerald-600 group-hover:text-white group-hover:border-emerald-600 transition-colors">
                         {source.index}
                       </span>
 

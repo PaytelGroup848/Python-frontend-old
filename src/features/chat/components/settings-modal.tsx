@@ -33,10 +33,33 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
   const [activeTab, setActiveTab] = useState<"profile" | "appearance" | "preferences" | "admin">("profile");
   const [savedNotice, setSavedNotice] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [brightnessLevel, setBrightnessLevel] = useState<"100" | "90" | "80">("100");
 
   useEffect(() => {
     setMounted(true);
+    try {
+      const stored = localStorage.getItem("patwatoli_brightness");
+      if (stored === "dim") setBrightnessLevel("90");
+      else if (stored === "soft") setBrightnessLevel("80");
+      else setBrightnessLevel("100");
+    } catch {}
   }, []);
+
+  const handleBrightnessChange = (lvl: "100" | "90" | "80") => {
+    setBrightnessLevel(lvl);
+    try {
+      if (lvl === "90") {
+        localStorage.setItem("patwatoli_brightness", "dim");
+        document.documentElement.style.filter = "brightness(0.92)";
+      } else if (lvl === "80") {
+        localStorage.setItem("patwatoli_brightness", "soft");
+        document.documentElement.style.filter = "brightness(0.85)";
+      } else {
+        localStorage.setItem("patwatoli_brightness", "standard");
+        document.documentElement.style.filter = "";
+      }
+    } catch {}
+  };
 
   if (!isOpen || !mounted) return null;
 
@@ -320,6 +343,64 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                           <span>Switch to Night</span>
                         </>
                       )}
+                    </button>
+                  </div>
+                </div>
+                {/* DISPLAY BRIGHTNESS & EYE COMFORT CONTROLS */}
+                <div className="space-y-3 pt-3 border-t border-slate-200 dark:border-slate-800">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                        <Sun size={14} className="text-amber-500" />
+                        <span>Display Brightness & Eye-Comfort</span>
+                      </h4>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                        Adjust luminance across the entire page to reduce eye-strain during extended sessions.
+                      </p>
+                    </div>
+                    <span className="rounded-md bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-[10px] font-mono font-bold text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                      {brightnessLevel === "100" ? "100% Full" : brightnessLevel === "90" ? "90% Soft Dim" : "85% Deep Comfort"}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-2.5">
+                    <button
+                      type="button"
+                      onClick={() => handleBrightnessChange("100")}
+                      className={`flex flex-col items-center justify-center rounded-xl border p-3 text-center transition cursor-pointer ${
+                        brightnessLevel === "100"
+                          ? "border-emerald-500 bg-emerald-50/60 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 font-bold ring-1 ring-emerald-500/20"
+                          : "border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 bg-white dark:bg-slate-800/40 text-slate-700 dark:text-slate-300"
+                      }`}
+                    >
+                      <span className="text-xs font-bold">100% Bright</span>
+                      <span className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">Standard Display</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => handleBrightnessChange("90")}
+                      className={`flex flex-col items-center justify-center rounded-xl border p-3 text-center transition cursor-pointer ${
+                        brightnessLevel === "90"
+                          ? "border-emerald-500 bg-emerald-50/60 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 font-bold ring-1 ring-emerald-500/20"
+                          : "border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 bg-white dark:bg-slate-800/40 text-slate-700 dark:text-slate-300"
+                      }`}
+                    >
+                      <span className="text-xs font-bold">90% Eye Comfort</span>
+                      <span className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">Reduced Glare</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => handleBrightnessChange("80")}
+                      className={`flex flex-col items-center justify-center rounded-xl border p-3 text-center transition cursor-pointer ${
+                        brightnessLevel === "80"
+                          ? "border-emerald-500 bg-emerald-50/60 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 font-bold ring-1 ring-emerald-500/20"
+                          : "border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 bg-white dark:bg-slate-800/40 text-slate-700 dark:text-slate-300"
+                      }`}
+                    >
+                      <span className="text-xs font-bold">85% Night Focus</span>
+                      <span className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">Max Eye Relief</span>
                     </button>
                   </div>
                 </div>
