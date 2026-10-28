@@ -283,7 +283,34 @@ function AssistantMessageItem({
   const markdownComponents: Components = useMemo(
     () => ({
       p({ children }) {
-        return <div className="mb-3 leading-relaxed last:mb-0">{children}</div>;
+        return <div className="mb-3 leading-relaxed last:mb-0 text-slate-800 dark:text-slate-100">{children}</div>;
+      },
+      strong({ children }) {
+        return <strong className="font-bold text-slate-900 dark:text-white">{children}</strong>;
+      },
+      em({ children }) {
+        return <em className="italic text-slate-800 dark:text-slate-200">{children}</em>;
+      },
+      h1({ children }) {
+        return <h1 className="text-xl font-bold text-slate-900 dark:text-white mt-4 mb-2">{children}</h1>;
+      },
+      h2({ children }) {
+        return <h2 className="text-lg font-bold text-slate-900 dark:text-white mt-3 mb-2">{children}</h2>;
+      },
+      h3({ children }) {
+        return <h3 className="text-base font-bold text-slate-900 dark:text-white mt-2 mb-1">{children}</h3>;
+      },
+      ul({ children }) {
+        return <ul className="list-disc pl-5 mb-3 space-y-1 text-slate-800 dark:text-slate-100">{children}</ul>;
+      },
+      ol({ children }) {
+        return <ol className="list-decimal pl-5 mb-3 space-y-1 text-slate-800 dark:text-slate-100">{children}</ol>;
+      },
+      li({ children }) {
+        return <li className="leading-relaxed text-slate-800 dark:text-slate-100">{children}</li>;
+      },
+      blockquote({ children }) {
+        return <blockquote className="border-l-4 border-emerald-500 bg-slate-50 dark:bg-slate-800/60 pl-3 py-1.5 my-2 text-slate-700 dark:text-slate-200 rounded-r-lg italic">{children}</blockquote>;
       },
       code({ className, children }) {
         const match = /language-(\w+)/.exec(className || "");
@@ -307,7 +334,7 @@ function AssistantMessageItem({
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-emerald-600 hover:underline font-medium"
+            className="text-emerald-600 dark:text-emerald-400 hover:underline font-medium"
           >
             {children}
           </a>
@@ -319,7 +346,7 @@ function AssistantMessageItem({
 
   return (
     <div className="flex flex-col items-start w-full max-w-3xl">
-      <div className="w-full text-[15px] leading-7 overflow-x-auto text-slate-800 bg-transparent py-1">
+      <div className="w-full text-[15px] leading-7 overflow-x-auto text-slate-800 dark:text-slate-100 bg-transparent py-1">
         {/* LOVABLE AI RESPONSE EXTENSIONS */}
         {message.role === "assistant" && message.content.includes("```") && (
           <div className="mb-3 flex flex-col gap-2.5">

@@ -420,7 +420,7 @@ export function ConversationSidebar() {
                     setMessages([]);
                   }
                 }}
-                className={`group flex items-center ${isCollapsed ? "justify-center p-2.5" : "justify-between px-3 py-2.5"} rounded-xl text-sm cursor-pointer transition-all duration-150 ${isActive ? "bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-semibold border border-emerald-200/80 dark:border-emerald-800 shadow-sm" : "text-slate-600 dark:text-slate-400 border border-transparent hover:bg-slate-100 dark:hover:bg-slate-800/70 hover:text-slate-900 dark:hover:text-white"}`}
+                className={`group flex items-center ${isCollapsed ? "justify-center p-2.5" : "justify-between px-3 py-2.5"} rounded-xl text-sm cursor-pointer transition-all duration-150 ${isActive ? "bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-semibold border border-emerald-200/80 dark:border-emerald-800 shadow-sm" : "text-slate-600 dark:text-slate-300 border border-transparent hover:bg-slate-100 dark:hover:bg-slate-800/70 hover:text-slate-900 dark:hover:text-white"}`}
                 title={isCollapsed ? conversation.title || "Untitled Chat" : undefined}
               >
                 {!isCollapsed ? (
@@ -490,8 +490,8 @@ export function ConversationSidebar() {
               }}
               className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-800/70 transition cursor-pointer"
             >
-              <Key size={16} className="text-slate-700" />
-              <span className="text-slate-800 font-semibold">Developer API Keys</span>
+              <Key size={16} className="text-slate-600 dark:text-slate-300" />
+              <span className="text-slate-800 dark:text-slate-200 font-semibold">Developer API Keys</span>
             </button>
 
             {/* PLATFORM SETTINGS */}
@@ -502,8 +502,8 @@ export function ConversationSidebar() {
               }}
               className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-800/70 transition cursor-pointer"
             >
-              <Settings size={16} className="text-slate-700" />
-              <span className="text-slate-800 font-semibold">Platform Settings</span>
+              <Settings size={16} className="text-slate-600 dark:text-slate-300" />
+              <span className="text-slate-800 dark:text-slate-200 font-semibold">Platform Settings</span>
             </button>
           </>
         ) : (
